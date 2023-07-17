@@ -20,6 +20,6 @@ public class Estudiante
     public int? AulaId { get; set; }
 
     [JsonIgnore]
-    public Aula? Aula { get; set; }
+    public Grado? Aula { get; set; }
 
 }

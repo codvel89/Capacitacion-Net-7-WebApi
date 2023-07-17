@@ -80,7 +80,7 @@ public class EstudiantesController  : ControllerBase
         if(!db.Estudiantes.Any(x => x.Id == Id))
             return NoContent();
 
-        if(!db.Aulas.Any(x => x.Id == AulaId))
+        if(!db.Grados.Any(x => x.Id == AulaId))
             return NoContent();
 
         var estudiante = db.Estudiantes.Find(Id)!;
@@ -94,7 +94,7 @@ public class EstudiantesController  : ControllerBase
 
     [HttpGet]
     [Route("{Id:int}/Aula")]
-    public ActionResult<Aula> GetAulaDeEstudiante([FromRoute] int Id)
+    public ActionResult<Grado> GetAulaDeEstudiante([FromRoute] int Id)
     {
         if(!db.Estudiantes.Any(x => x.Id == Id))
             return NoContent();

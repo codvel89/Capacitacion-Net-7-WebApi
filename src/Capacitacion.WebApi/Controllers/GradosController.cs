@@ -9,50 +9,50 @@ namespace Capacitacion.WebApi.Controllers;
 [Route("api/v1/[controller]")]
 [Produces("application/json")]
 [Consumes("application/json")]
-public class AulasController : ControllerBase
+public class GradosController : ControllerBase
 {
     private readonly ColegioDbContext db;
 
-    public AulasController(ColegioDbContext db)
+    public GradosController(ColegioDbContext db)
     {
         this.db = db;
     }
 
 
     [HttpGet]
-    public ActionResult<List<Aula>> GetAulas()
+    public ActionResult<List<Grado>> GetAulas()
     {
-        var aulas = db.Aulas.ToList();
+        var aulas = db.Grados.ToList();
         return Ok(aulas);
     }
 
     [HttpGet]
     [Route("{Id:int}")]
-    public ActionResult<Aula> GetAula([FromRoute] int Id)
+    public ActionResult<Grado> GetAula([FromRoute] int Id)
     {
-        var aula = db.Aulas.Find(Id);
+        var aula = db.Grados.Find(Id);
         return Ok(aula);
     }
 
     [HttpPost]
-    public ActionResult<Aula> PostAula([FromBody] Aula aula)
+    public ActionResult<Grado> PostAula([FromBody] Grado aula)
     {
 
-        db.Aulas.Add(aula);
+        db.Grados.Add(aula);
         db.SaveChanges();
         return Ok(aula);
     }
     
     [HttpPut]
     [Route("{Id:int}")]
-    public ActionResult<Aula> PutAula([FromRoute] int Id, [FromBody] Aula aula)
+    public ActionResult<Grado> PutAula([FromRoute] int Id, [FromBody] Grado aula)
     {
 
-        if(!db.Aulas.Any(x => x.Id == Id))
+        if(!db.Grados.Any(x => x.Id == Id))
             return NoContent();
 
         aula.Id = Id;
-        db.Aulas.Entry(aula).State = EntityState.Modified;
+        db.Grados.Entry(aula).State = EntityState.Modified;
         db.SaveChanges();
 
         return Ok(aula);
@@ -62,12 +62,12 @@ public class AulasController : ControllerBase
     [Route("{Id:int}")]
     public ActionResult DeleteAula([FromRoute] int Id)
     {
-        if(!db.Aulas.Any(x => x.Id == Id))
+        if(!db.Grados.Any(x => x.Id == Id))
             return NoContent();
 
-        var aula = db.Aulas.Find(Id)!;
+        var aula = db.Grados.Find(Id)!;
 
-        db.Aulas.Remove(aula);
+        db.Grados.Remove(aula);
         db.SaveChanges();
 
         return Ok();
@@ -77,7 +77,7 @@ public class AulasController : ControllerBase
     [Route("{Id:int}/Estudiantes")]
     public ActionResult<List<Estudiante>> ObtenerEstudiantesDeAula([FromRoute] int Id)
     {
-        var aula = db.Aulas.Include(x => x.Estudiantes).Single(x => x.Id == Id)!;
+        var aula = db.Grados.Include(x => x.Estudiantes).Single(x => x.Id == Id)!;
         return Ok(aula.Estudiantes);
     }
 
