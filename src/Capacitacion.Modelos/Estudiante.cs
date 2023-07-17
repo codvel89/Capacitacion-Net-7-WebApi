@@ -13,13 +13,14 @@ public class Estudiante
 
     [StringLength(100, MinimumLength = 5)]
     public required string Nombre { get; set; }
+    public string? Email { get; set; }
     public int Edad { get; set; }
 
     [JsonIgnore]
-    [ForeignKey(nameof(Aula))]
-    public int? AulaId { get; set; }
+    [ForeignKey(nameof(Grado))]
+    public int? GradoId { get; set; }
 
     [JsonIgnore]
-    public Grado? Aula { get; set; }
+    public Grado? Grado { get; set; }
 
 }
