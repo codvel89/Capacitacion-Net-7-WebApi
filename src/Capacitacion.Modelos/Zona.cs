@@ -5,12 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Capacitacion.Modelos;
 
-public class Zona
+public class Punteo
 {
     [Key]
     public int Id { get; set; }
-
-    public int Ciclo { get; set; }
 
     [ForeignKey(nameof(Materia))]
     public int MateriaId { get; set; }
@@ -18,7 +16,7 @@ public class Zona
     [JsonIgnore]
     public Materia? Materia { get; set; }
 
-    public TipoZona Tipo { get; set; }
+    public TipoPunteo Tipo { get; set; }
     
     [DataType("DECIMAL(5,2)")]
     public decimal Valor { get; set; }

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capacitacion.Modelos", "src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capacitacion.WebApi", "src\Capacitacion.WebApi\Capacitacion.WebApi.csproj", "{4E381CEF-06BF-4FAE-BE9C-0EC684E1E04B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capacitacion.Web", "src\Capacitacion.Web\Capacitacion.Web.csproj", "{469845CC-48FA-4046-8979-A6C47DC502AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,9 +28,14 @@ Global
 		{4E381CEF-06BF-4FAE-BE9C-0EC684E1E04B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E381CEF-06BF-4FAE-BE9C-0EC684E1E04B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E381CEF-06BF-4FAE-BE9C-0EC684E1E04B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{469845CC-48FA-4046-8979-A6C47DC502AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{469845CC-48FA-4046-8979-A6C47DC502AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{469845CC-48FA-4046-8979-A6C47DC502AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{469845CC-48FA-4046-8979-A6C47DC502AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{59EA88C3-3F81-4CAA-BD2D-952503240D57} = {A3A6B228-BD0E-4F67-BA68-2A2670760BDB}
 		{4E381CEF-06BF-4FAE-BE9C-0EC684E1E04B} = {A3A6B228-BD0E-4F67-BA68-2A2670760BDB}
+		{469845CC-48FA-4046-8979-A6C47DC502AA} = {A3A6B228-BD0E-4F67-BA68-2A2670760BDB}
 	EndGlobalSection
 EndGlobal
