@@ -18,7 +18,6 @@ public class Grado
     [Required]
     [StringLength(1, MinimumLength = 1)]
     public required string Seccion { get; set; }
-
     public Nivel Nivel { get; set; }
 
     [JsonIgnore]
