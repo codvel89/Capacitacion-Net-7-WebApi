@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Capacitacion.Modelos;
 
-public class EstudiantePorAula
+public class EstudiantePorGrado
 {
     [Key]
     public int Id { get; set; }

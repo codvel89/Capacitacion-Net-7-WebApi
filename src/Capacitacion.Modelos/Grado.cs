@@ -20,6 +20,6 @@ public class Grado
     public required string Seccion { get; set; }
 
     [JsonIgnore]
-    public List<EstudiantePorAula>? EstudiantesPorAula { get; set; }
+    public List<EstudiantePorGrado>? EstudiantesPorAula { get; set; }
 
 }
