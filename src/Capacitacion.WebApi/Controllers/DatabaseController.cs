@@ -1,3 +1,4 @@
+using Capacitacion.Modelos;
 using Capacitacion.WebApi.Context;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,6 +27,29 @@ public class DatabaseController : ControllerBase
         }
 
         db.Database.EnsureCreated();
+
+        db.Database.BeginTransaction();
+
+        Estudiante estudiante = new()
+        {
+            Nombre = "Abner Velasco",
+            Email = "codvel90@gmail.com",
+            Edad = 13
+        };
+
+        db.Estudiantes.Add(estudiante);
+
+        Grado grado = new()
+        {
+            Nombre = "Primero Básico",
+            Seccion = "A"
+        };
+
+        db.Grados.Add(grado);
+        db.SaveChanges();
+
+        db.Database.CommitTransaction();
+
 
         return Ok();
     }

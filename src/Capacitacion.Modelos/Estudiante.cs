@@ -18,6 +18,6 @@ public class Estudiante
 
 
     [JsonIgnore]
-    public List<EstudiantePorGrado>? EstudiantesPorAula { get; set; }
+    public List<EstudianteDeGrado>? EstudiantesPorAula { get; set; }
 
 }

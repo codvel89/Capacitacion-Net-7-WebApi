@@ -1,10 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
+using Microsoft.EntityFrameworkCore;
 
 namespace Capacitacion.Modelos;
 
-public class EstudiantePorGrado
+[Index(nameof(GradoId), nameof(EstudianteId), nameof(CicloEscolar), IsUnique = true)]
+public class EstudianteDeGrado
 {
     [Key]
     public int Id { get; set; }

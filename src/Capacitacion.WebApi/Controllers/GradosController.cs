@@ -35,27 +35,27 @@ public class GradosController : ControllerBase
     }
 
     [HttpPost]
-    public ActionResult<Grado> PostAula([FromBody] Grado aula)
+    public ActionResult<Grado> PostAula([FromBody] Grado grado)
     {
 
-        db.Grados.Add(aula);
+        db.Grados.Add(grado);
         db.SaveChanges();
-        return Ok(aula);
+        return Ok(grado);
     }
     
     [HttpPut]
     [Route("{Id:int}")]
-    public ActionResult<Grado> PutAula([FromRoute] int Id, [FromBody] Grado aula)
+    public ActionResult<Grado> PutAula([FromRoute] int Id, [FromBody] Grado grado)
     {
 
         if(!db.Grados.Any(x => x.Id == Id))
             return NoContent();
 
-        aula.Id = Id;
-        db.Grados.Entry(aula).State = EntityState.Modified;
+        grado.Id = Id;
+        db.Grados.Entry(grado).State = EntityState.Modified;
         db.SaveChanges();
 
-        return Ok(aula);
+        return Ok(grado);
     }
 
     [HttpDelete]
@@ -68,6 +68,42 @@ public class GradosController : ControllerBase
         var aula = db.Grados.Find(Id)!;
 
         db.Grados.Remove(aula);
+        db.SaveChanges();
+
+        return Ok();
+    }
+
+    [HttpGet]
+    [Route("{Id:int}/Estudiantes")]
+    public ActionResult ListadoDeEstudiantePorGrado([FromRoute] int Id)
+    {
+
+        if(!db.Grados.Any(x => x.Id == Id))
+            return NoContent();
+
+        List<Estudiante> estudiantes = db.EstudiantesPorGrado.Include(x => x.Grado).Include(x => x.Estudiante).Where(x => x.Grado!.Id == Id).Select(x => x.Estudiante).ToList()!;
+
+        return Ok(estudiantes);
+    }
+
+    [HttpPost]
+    [Route("{Id:int}/Estudiantes/{EstudianteId:int}")]
+    public ActionResult AgregarEstudianteAgrado([FromRoute] int Id, [FromRoute] int EstudianteId)
+    {
+
+        if(!db.Grados.Any(x => x.Id == Id))
+            return NoContent();
+        
+        if(!db.Estudiantes.Any(x => x.Id == Id))
+            return NoContent();
+
+        EstudianteDeGrado relacion = new(){
+            GradoId = Id,
+            EstudianteId = EstudianteId,
+            CicloEscolar = DateTime.Now.Year
+        };
+
+        db.EstudiantesPorGrado.Add(relacion);
         db.SaveChanges();
 
         return Ok();

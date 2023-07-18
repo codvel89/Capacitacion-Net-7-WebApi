@@ -21,7 +21,7 @@ public class EstudiantesController  : ControllerBase
     [HttpGet]
     public ActionResult<List<Estudiante>> GetEstudiantes()
     {
-        var Estudiantes = db.Estudiantes.ToList();
+        var Estudiantes = db.Estudiantes.OrderBy(x => x.Nombre).Select(x => x.Nombre.ToUpper()).ToList();
         return Ok(Estudiantes);
     }
 
@@ -70,6 +70,44 @@ public class EstudiantesController  : ControllerBase
         db.SaveChanges();
 
         return Ok();
+    }
+
+    [HttpGet]
+    [Route("{Id:int}/Grados")]
+    public ActionResult ObtenerElGradoDelEstudiante([FromRoute] int Id, [FromQuery] int CicloEscolar = 0)
+    {
+
+        if(!db.Estudiantes.Any(x => x.Id == Id))
+            return NoContent();
+
+        if(CicloEscolar == 0)
+        {
+
+            return Ok(db.EstudiantesPorGrado
+                .Include(x => x.Grado)
+                .Include(x => x.Estudiante)
+                .Where(x => x.EstudianteId == Id)
+                .Select( x => new {
+                    x.Grado!.Id,
+                    x.CicloEscolar,
+                    x.Grado!.Nombre,
+                    x.Grado.Seccion
+                })
+                .ToList()!);
+        }else{
+            return Ok(db.EstudiantesPorGrado
+                .Include(x => x.Grado)
+                .Include(x => x.Estudiante)
+                .Where(x => x.EstudianteId == Id && x.CicloEscolar == CicloEscolar)
+                .Select( x => new {
+                    x.Grado!.Id,
+                    x.CicloEscolar,
+                    x.Grado!.Nombre,
+                    x.Grado.Seccion
+                })
+                .ToList()!);
+
+        }
     }
 
 

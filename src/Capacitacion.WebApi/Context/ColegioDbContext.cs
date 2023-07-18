@@ -8,7 +8,7 @@ public class ColegioDbContext : DbContext
 
 
     public required DbSet<Estudiante> Estudiantes { get; set; }
-    public required DbSet<EstudiantePorGrado> EstudiantesPorGrado { get; set; }
+    public required DbSet<EstudianteDeGrado> EstudiantesPorGrado { get; set; }
     public required DbSet<Grado> Grados { get; set; }
     public required DbSet<Maestro> Maestros { get; set; }
     public required DbSet<Materia> Materias { get; set; }
