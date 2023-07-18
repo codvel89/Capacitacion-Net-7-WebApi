@@ -72,36 +72,6 @@ public class EstudiantesController  : ControllerBase
         return Ok();
     }
 
-    [HttpPost]
-    [Route("{Id:int}/asignar-grado/{GradoId:int}")]
-    public ActionResult CreateRelational([FromRoute] int Id, [FromRoute] int GradoId)
-    {
 
-        if(!db.Estudiantes.Any(x => x.Id == Id))
-            return NoContent();
-
-        if(!db.Grados.Any(x => x.Id == GradoId))
-            return NoContent();
-
-        var estudiante = db.Estudiantes.Find(Id)!;
-
-        estudiante.GradoId = GradoId;
-        db.Estudiantes.Entry(estudiante).State = EntityState.Modified;
-        db.SaveChanges();
-
-        return Ok();
-    }
-
-    [HttpGet]
-    [Route("{Id:int}/Aula")]
-    public ActionResult<Grado> GetAulaDeEstudiante([FromRoute] int Id)
-    {
-        if(!db.Estudiantes.Any(x => x.Id == Id))
-            return NoContent();
-        
-        var estudiante = db.Estudiantes.Include(x => x.Grado).Single(x => x.Id == Id)!;
-
-        return Ok(estudiante.Grado);
-    }
 
 }

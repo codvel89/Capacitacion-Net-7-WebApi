@@ -73,12 +73,5 @@ public class GradosController : ControllerBase
         return Ok();
     }
 
-    [HttpGet]
-    [Route("{Id:int}/Estudiantes")]
-    public ActionResult<List<Estudiante>> ObtenerEstudiantesDeAula([FromRoute] int Id)
-    {
-        var aula = db.Grados.Include(x => x.Estudiantes).Single(x => x.Id == Id)!;
-        return Ok(aula.Estudiantes);
-    }
 
 }

@@ -16,11 +16,8 @@ public class Estudiante
     public string? Email { get; set; }
     public int Edad { get; set; }
 
-    [JsonIgnore]
-    [ForeignKey(nameof(Grado))]
-    public int? GradoId { get; set; }
 
     [JsonIgnore]
-    public Grado? Grado { get; set; }
+    public List<EstudiantePorAula>? EstudiantesPorAula { get; set; }
 
 }

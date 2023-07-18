@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Capacitacion.Modelos;
 
 
-[Index(nameof(Nombre), nameof(Seccion), nameof(Nivel), IsUnique = true)]
+[Index(nameof(Nombre), nameof(Seccion), IsUnique = true)]
 public class Grado
 {
     [Key]
@@ -18,9 +18,8 @@ public class Grado
     [Required]
     [StringLength(1, MinimumLength = 1)]
     public required string Seccion { get; set; }
-    public Nivel Nivel { get; set; }
 
     [JsonIgnore]
-    public List<Estudiante>? Estudiantes { get; set; }
+    public List<EstudiantePorAula>? EstudiantesPorAula { get; set; }
 
 }
